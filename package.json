@@ -4,12 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@auth0/auth0-react": "^1.5.0",
     "firebase": "^8.6.2",
     "next": "^10.2.3",
     "react": "^17.0.2",
