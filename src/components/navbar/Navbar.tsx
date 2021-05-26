@@ -17,6 +17,11 @@ const Navbar = () => {
               <a className="nav-link text-decoration-none">Clientes</a>
             </Link>
           </li>
+          <li className="nav-item ">
+            <Link href="/resume">
+              <a className="nav-link text-decoration-none">Resumen</a>
+            </Link>
+          </li>
         </ul>
       )}
     </nav>

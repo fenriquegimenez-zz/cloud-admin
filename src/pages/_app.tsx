@@ -3,7 +3,7 @@ import type { AppProps /*, AppContext */ } from "next/app"
 import { useEffect, useState } from "react"
 import { Auth0Provider } from "@auth0/auth0-react"
 import "firebase/app"
-import "bootswatch/dist/flatly/bootstrap.min.css"
+import "bootstrap/dist/css/bootstrap.min.css"
 import "react-toastify/dist/ReactToastify.css"
 import { ToastContainer } from "react-toastify"
 
@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     >
       <Layout>
         <Component {...pageProps} />
-        <ToastContainer />
+        <ToastContainer pauseOnFocusLoss={false} />
       </Layout>
     </Auth0Provider>
   )

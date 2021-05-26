@@ -2,8 +2,7 @@ import React, { FormEvent, useState, useRef, useEffect } from "react"
 
 import { db } from "@/services/firebase"
 import { toast } from "react-toastify"
-
-import Spinner from "../spinner/Spinner"
+const thousands = require("thousands")
 
 const CustomersForm = () => {
   const [customer, setCustomer] = useState("")
@@ -34,7 +33,7 @@ const CustomersForm = () => {
     await db
       .collection("customers")
       .doc()
-      .set({ customer, renta, departamento })
+      .set({ customer, renta, departamento, cobrado: false })
       .then(() => setIsloading(false))
     toast("Cliente cargado con éxito", { type: "default" })
   }
@@ -53,6 +52,7 @@ const CustomersForm = () => {
           onChange={e => setCustomer(e.target.value)}
           value={customer}
           ref={firstInputRef}
+          required
         />
       </div>
       <div className="input-group my-2">
@@ -62,6 +62,7 @@ const CustomersForm = () => {
           placeholder="Ingrese el valor de la renta"
           onChange={e => setRenta(e.target.value)}
           value={renta}
+          required
         />
       </div>
       <div className="input-group my-2">
@@ -71,6 +72,7 @@ const CustomersForm = () => {
           placeholder="Ingrese el departamento"
           onChange={e => setDepartamento(e.target.value)}
           value={departamento}
+          required
         />
       </div>
       <div className="text-center">
