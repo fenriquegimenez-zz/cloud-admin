@@ -2,6 +2,7 @@ import React, { FormEvent, useState, useRef, useEffect } from "react"
 
 import { db } from "@/services/firebase"
 import { toast } from "react-toastify"
+import Toast from "../toast/Toast"
 const thousands = require("thousands")
 
 const CustomersForm = () => {
@@ -35,7 +36,7 @@ const CustomersForm = () => {
       .doc()
       .set({ customer, renta, departamento, cobrado: false })
       .then(() => setIsloading(false))
-    toast("Cliente cargado con éxito", { type: "default" })
+    toast(<Toast type="success" message="Cliente creado exitosamente" />)
   }
   return (
     <form
