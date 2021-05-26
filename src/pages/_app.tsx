@@ -1,10 +1,14 @@
 // import App from "next/app";
 import type { AppProps /*, AppContext */ } from "next/app"
-import "firebase/app"
-import { Auth0Provider } from "@auth0/auth0-react"
-import { auth0 } from "@/services/auth0"
 import { useEffect, useState } from "react"
+import { Auth0Provider } from "@auth0/auth0-react"
+import "firebase/app"
 import "bootswatch/dist/flatly/bootstrap.min.css"
+import "react-toastify/dist/ReactToastify.css"
+import { ToastContainer } from "react-toastify"
+
+import Layout from "@/components/layout/Layout"
+import { auth0 } from "@/services/auth0"
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [origin, setOrigin] = useState("")
@@ -19,7 +23,10 @@ function MyApp({ Component, pageProps }: AppProps) {
       clientId={auth0.clientId}
       redirectUri={origin}
     >
-      <Component {...pageProps} />
+      <Layout>
+        <Component {...pageProps} />
+        <ToastContainer />
+      </Layout>
     </Auth0Provider>
   )
 }

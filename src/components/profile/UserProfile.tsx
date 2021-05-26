@@ -17,7 +17,7 @@ const UserProfile = () => {
             className="card-img-top"
           />
           <div className="card-title">
-            <h3>{user?.name}</h3>
+            <h5>{`Welcome, ${user?.name}`}</h5>
           </div>
           <div className="card-body">
             <p>{user?.email}</p>
