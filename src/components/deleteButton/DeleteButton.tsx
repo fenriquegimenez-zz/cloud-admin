@@ -34,7 +34,7 @@ const DeleteButton = ({ cobrado, id }: ButtonProps) => {
     <button
       onClick={() => deleteConfirm()}
       disabled={cobrado}
-      className="btn btn-sm btn-outline-danger"
+      className="btn btn-outline-danger"
     >
       🗑
     </button>
