@@ -3,7 +3,7 @@ import React, { FormEvent, useState, useRef, useEffect } from "react"
 import { db } from "@/services/firebase"
 import { toast } from "react-toastify"
 import Toast from "../toast/Toast"
-const thousands = require("thousands")
+import NumberFormat from "react-number-format"
 
 const CustomersForm = () => {
   const [customer, setCustomer] = useState("")
@@ -57,8 +57,10 @@ const CustomersForm = () => {
         />
       </div>
       <div className="input-group my-2">
-        <input
-          type="number"
+        <NumberFormat
+          type="text"
+          thousandSeparator="."
+          decimalSeparator=","
           className="form-control"
           placeholder="Ingrese el valor de la renta"
           onChange={e => setRenta(e.target.value)}
