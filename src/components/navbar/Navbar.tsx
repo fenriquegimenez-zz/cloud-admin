@@ -2,6 +2,8 @@ import React from "react"
 import Link from "next/link"
 
 import { useAuth0 } from "@auth0/auth0-react"
+import Login from "../loginButton/Login"
+import LogoutIcon from "../logoutButton/LogoutIcon"
 
 const Navbar = () => {
   const { isAuthenticated } = useAuth0()
@@ -10,7 +12,7 @@ const Navbar = () => {
       <Link href="/">
         <a className="navbar-brand mx-auto">Inicio</a>
       </Link>
-      {isAuthenticated && (
+      {isAuthenticated ? (
         <ul className="navbar-nav mx-auto">
           <li className="nav-item ">
             <Link href="/customers">
@@ -22,7 +24,12 @@ const Navbar = () => {
               <a className="nav-link text-decoration-none">Resumen</a>
             </Link>
           </li>
+          <li>
+            <LogoutIcon />
+          </li>
         </ul>
+      ) : (
+        <Login outline={true} />
       )}
     </nav>
   )

@@ -5,8 +5,8 @@ const Logout = () => {
   const { logout } = useAuth0()
   return (
     <div className="text-center">
-      <button onClick={() => logout()} className="btn btn-outline-primary">
-        Log out
+      <button onClick={() => logout()} className="btn btn-outline-secondary">
+        Cerrar sesión
       </button>
     </div>
   )
