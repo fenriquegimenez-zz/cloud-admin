@@ -1,21 +1,21 @@
 import React, { FormEvent, useState, useRef, useEffect } from "react"
 
 import { db } from "@/services/firebase"
-import { toast } from "react-toastify"
-import Toast from "../toast/Toast"
 import NumberFormat from "react-number-format"
+import swal from "sweetalert2"
 
 const CustomersForm = () => {
   const [customer, setCustomer] = useState("")
   const [renta, setRenta] = useState("")
   const [departamento, setDepartamento] = useState("")
   const [isloading, setIsloading] = useState(false)
+  const [isModalClosed, setisModalClosed] = useState(false)
 
   const firstInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     firstInputRef.current?.focus()
-  }, [])
+  }, [isModalClosed])
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
@@ -36,7 +36,12 @@ const CustomersForm = () => {
       .doc()
       .set({ customer, renta, departamento, cobrado: false })
       .then(() => setIsloading(false))
-    toast(<Toast type="success" message="Cliente creado exitosamente" />)
+    swal.fire({
+      title: "cliente creado",
+      icon: "success",
+      iconColor: "green",
+      confirmButtonColor: "green",
+    })
   }
   return (
     <form

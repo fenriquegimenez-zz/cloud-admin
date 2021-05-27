@@ -9,9 +9,10 @@ const DeleteButton = ({ cobrado, id }: ButtonProps) => {
   }
   const deleteConfirm = () => {
     Swal.fire({
-      title: "Está seguro?",
+      title: "Está seguro que desea eliminar?",
       text: "Esta acción no se puede deshacer.",
-      icon: "error",
+      icon: "question",
+      iconColor: "red",
       confirmButtonText: "Eliminar",
       confirmButtonColor: "red",
       showCancelButton: true,

@@ -29,7 +29,7 @@ const CustomersList = () => {
     <>
       <h2 className="text-center my-3">Listado de clientes</h2>
       {customers.length > 0 ? (
-        <div className="text-center d-flex justify-content-center">
+        <div className="text-center d-flex justify-content-center table-responsive">
           <table
             className=" table table-hover table-bordered "
             style={{ maxWidth: "600px" }}
