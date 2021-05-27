@@ -10,3 +10,7 @@ export interface CustomerInfo {
   cobrado?: boolean
   id?: string
 }
+export interface ButtonProps {
+  cobrado: boolean | undefined
+  id: string | undefined
+}

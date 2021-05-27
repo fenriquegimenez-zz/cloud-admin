@@ -6,28 +6,11 @@ import clsx from "clsx"
 import { toast } from "react-toastify"
 import Toast from "../toast/Toast"
 import NoData from "../nodata-alert/NoData"
-import { css } from "glamor"
+import CobrarButton from "../CobrarButton/CobrarButton"
+import DeleteButton from "../deleteButton/DeleteButton"
 
 const CustomersList = () => {
   const [customers, setCustomers] = useState<CustomerInfo[]>([])
-  const [loading, setLoading] = useState(true)
-
-  const toggleCobrado = async (cobrado?: boolean, id?: string) => {
-    if (await cobrado) {
-      db.collection("customers")
-        .doc(id)
-        .update({ cobrado: false })
-        .then(() => setLoading(false))
-      toast(<Toast type="info" message="Anulación de cobro exitosa" />)
-    } else {
-      await db
-        .collection("customers")
-        .doc(id)
-        .update({ cobrado: true })
-        .then(() => setLoading(false))
-      toast(<Toast type="success" message="Cobrado exitosamente" />)
-    }
-  }
 
   const getCustomers = () => {
     db.collection("customers").onSnapshot(querySnapshot => {
@@ -37,11 +20,6 @@ const CustomersList = () => {
       })
       setCustomers(customersList)
     })
-  }
-
-  const deleteCustomer = (id?: string) => {
-    db.collection("customers").doc(id).delete()
-    toast(<Toast type="danger" message="Cliente eliminado" />)
   }
 
   useEffect(() => {
@@ -76,23 +54,16 @@ const CustomersList = () => {
                     <td>{`Gs. ${thousands(customer.renta, ".")}`}</td>
                     <td>{customer.departamento}</td>
                     <td className="text-center">
-                      <button
-                        onClick={() =>
-                          toggleCobrado(customer.cobrado, customer.id)
-                        }
-                        className="btn btn-sm btn-outline-success"
-                      >
-                        {customer.cobrado ? "✔" : "💰"}
-                      </button>
+                      <CobrarButton
+                        cobrado={customer.cobrado}
+                        id={customer.id}
+                      />
                     </td>
                     <td>
-                      <button
-                        disabled={customer.cobrado}
-                        onClick={() => deleteCustomer(customer.id)}
-                        className="btn btn-sm btn-outline-danger"
-                      >
-                        🗑
-                      </button>
+                      <DeleteButton
+                        cobrado={customer.cobrado}
+                        id={customer.id}
+                      />
                     </td>
                   </tr>
                 )
