@@ -11,6 +11,15 @@ export interface CustomerInfo {
   id?: string
 }
 export interface ButtonProps {
-  cobrado: boolean | undefined
-  id: string | undefined
+  cobrado?: boolean
+  id?: string
+}
+export interface NewClient {
+  customer: string
+  renta: string
+  departamento: string
+  userEmail?: string
+  cobrado?: boolean
+  createdBy?: string
+  createdAt: string
 }

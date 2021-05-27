@@ -1,40 +1,54 @@
 import React, { FormEvent, useState, useRef, useEffect } from "react"
 
+import { useAuth0 } from "@auth0/auth0-react"
+
 import { db } from "@/services/firebase"
 import NumberFormat from "react-number-format"
 import swal from "sweetalert2"
+import { NewClient } from "@/types/types"
 
 const CustomersForm = () => {
   const [customer, setCustomer] = useState("")
   const [renta, setRenta] = useState("")
   const [departamento, setDepartamento] = useState("")
   const [isloading, setIsloading] = useState(false)
-  const [isModalClosed, setisModalClosed] = useState(false)
 
+  const { user } = useAuth0()
   const firstInputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     firstInputRef.current?.focus()
-  }, [isModalClosed])
+  }, [])
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
-
-    addClient(customer, renta, departamento)
+    const date = new Date().toLocaleString()
+    const createdBy = user?.email
+    addClient({ customer, renta, departamento, createdBy, createdAt: date })
     setCustomer("")
     setRenta("")
     setDepartamento("")
   }
-  const addClient = async (
-    customer: string,
-    renta: string,
-    departamento: string
-  ) => {
+  const addClient = async ({
+    customer,
+    renta,
+    departamento,
+    cobrado,
+    createdBy,
+    createdAt,
+  }: NewClient) => {
     setIsloading(true)
     await db
       .collection("customers")
       .doc()
-      .set({ customer, renta, departamento, cobrado: false })
+      .set({
+        customer,
+        renta,
+        departamento,
+        cobrado: false,
+        createdBy: user?.email,
+        createdAt,
+      })
       .then(() => setIsloading(false))
     swal.fire({
       title: "cliente creado",
