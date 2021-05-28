@@ -4,27 +4,19 @@ import Spinner from "../spinner/Spinner"
 import Logout from "../Buttons/logoutButton/Logout"
 
 const UserProfile = () => {
-  const { user, isLoading } = useAuth0()
+  const { user } = useAuth0()
   return (
     <div className="text-center">
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <div className="card" style={{ width: "18rem" }}>
-          <img
-            src={user?.picture}
-            alt="User picture"
-            className="card-img-top"
-          />
-          <div className="card-title">
-            <h5>{`Welcome, ${user?.name}`}</h5>
-          </div>
-          <div className="card-body">
-            <p>{user?.email}</p>
-            <Logout />
-          </div>
+      <div className="card" style={{ width: "18rem" }}>
+        <img src={user?.picture} alt="User picture" className="card-img-top" />
+        <div className="card-title">
+          <h5>{`Welcome, ${user?.name}`}</h5>
         </div>
-      )}
+        <div className="card-body">
+          <p>{user?.email}</p>
+          <Logout />
+        </div>
+      </div>
     </div>
   )
 }
