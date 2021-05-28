@@ -2,8 +2,8 @@ import React from "react"
 import Link from "next/link"
 
 import { useAuth0 } from "@auth0/auth0-react"
-import Login from "../loginButton/Login"
-import LogoutIcon from "../logoutButton/LogoutIcon"
+import Login from "../Buttons/loginButton/Login"
+import LogoutIcon from "../Buttons/logoutButton/LogoutIcon"
 
 const Navbar = () => {
   const { isAuthenticated } = useAuth0()

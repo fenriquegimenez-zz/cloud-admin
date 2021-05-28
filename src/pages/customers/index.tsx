@@ -1,7 +1,7 @@
 import React from "react"
 
 import CustomersForm from "@/components/customersForm/CustomersForm"
-import Login from "@/components/loginButton/Login"
+import Login from "@/components/Buttons/loginButton/Login"
 
 import { useAuth0 } from "@auth0/auth0-react"
 

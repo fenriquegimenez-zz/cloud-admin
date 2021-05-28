@@ -1,7 +1,7 @@
 import React from "react"
 import { useAuth0 } from "@auth0/auth0-react"
 import Spinner from "../spinner/Spinner"
-import Logout from "../logoutButton/Logout"
+import Logout from "../Buttons/logoutButton/Logout"
 
 const UserProfile = () => {
   const { user, isLoading } = useAuth0()

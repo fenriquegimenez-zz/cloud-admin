@@ -4,8 +4,8 @@ import { CustomerInfo } from "@/types/types"
 const thousands = require("thousands")
 import clsx from "clsx"
 import NoData from "../nodata-alert/NoData"
-import CobrarButton from "../CobrarButton/CobrarButton"
-import DeleteButton from "../deleteButton/DeleteButton"
+import CobrarButton from "../Buttons/CobrarButton/CobrarButton"
+import DeleteButton from "../Buttons/deleteButton/DeleteButton"
 
 const CustomersList = () => {
   const [customers, setCustomers] = useState<CustomerInfo[]>([])
