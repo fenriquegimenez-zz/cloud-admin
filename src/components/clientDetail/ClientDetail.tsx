@@ -16,7 +16,7 @@ const ClientDetail = () => {
 
   const getCustomer = async (id: string | undefined) => {
     const customer = await db.collection("customers").doc(id).get()
-    setCustomer(customer.data())
+    setCustomer(customer.data() as NewClient)
   }
 
   useEffect(() => {
