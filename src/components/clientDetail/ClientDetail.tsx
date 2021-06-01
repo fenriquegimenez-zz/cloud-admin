@@ -26,7 +26,8 @@ const ClientDetail = () => {
   return customer ? (
     <div
       style={{
-        maxWidth: "60%",
+        maxWidth: "80%",
+        minWidth: "60%",
         margin: "auto",
         border: "1px solid gray",
         borderRadius: "20px",

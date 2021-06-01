@@ -7,6 +7,7 @@ import swal from "sweetalert2"
 const CobrarButton = ({ cobrado, id, context }: ButtonProps) => {
   const toggleCobrado = async ({ cobrado, id }: ButtonProps) => {
     await db.collection("customers").doc(id).update({ cobrado: !cobrado })
+
     swal.fire({
       title: cobrado ? "Anulación exitosa" : "Cobro exitoso",
       icon: cobrado ? "info" : "success",
@@ -23,7 +24,7 @@ const CobrarButton = ({ cobrado, id, context }: ButtonProps) => {
       {cobrado
         ? context === "table"
           ? "✔"
-          : "Anular cobro"
+          : "Anular"
         : context === "detail"
         ? "Cobrar"
         : "💰"}

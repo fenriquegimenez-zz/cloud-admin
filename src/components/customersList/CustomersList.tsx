@@ -11,8 +11,8 @@ import Link from "next/link"
 const CustomersList = () => {
   const [customers, setCustomers] = useState<CustomerInfo[]>([])
 
-  const getCustomers = () => {
-    db.collection("customers").onSnapshot(querySnapshot => {
+  const getCustomers = async () => {
+    await db.collection("customers").onSnapshot(querySnapshot => {
       const customersList: CustomerInfo[] = []
       querySnapshot.forEach(doc => {
         customersList.push({ ...doc.data(), id: doc.id } as CustomerInfo)
@@ -46,7 +46,11 @@ const CustomersList = () => {
                   "table-success": customer.cobrado,
                 })
                 return (
-                  <tr className={successBg} style={{ cursor: "pointer" }}>
+                  <tr
+                    key={customer.id}
+                    className={successBg}
+                    style={{ cursor: "pointer" }}
+                  >
                     <Link href={`/customers/${customer.id}`}>
                       <td>
                         <strong>{customer.customer}</strong>
