@@ -3,7 +3,7 @@ import { db } from "@/services/firebase"
 import { ButtonProps } from "@/types/types"
 import Swal from "sweetalert2"
 
-const DeleteButton = ({ cobrado, id }: ButtonProps) => {
+const DeleteButton = ({ cobrado, id, context }: ButtonProps) => {
   const deleteCustomer = async (id?: string) => {
     await db.collection("customers").doc(id).delete()
   }
@@ -33,10 +33,10 @@ const DeleteButton = ({ cobrado, id }: ButtonProps) => {
   return (
     <button
       onClick={() => deleteConfirm()}
+      className={`btn btn-outline-danger`}
       disabled={cobrado}
-      className="btn btn-outline-danger"
     >
-      🗑
+      {context === "table" ? "🗑" : "Eliminar"}
     </button>
   )
 }

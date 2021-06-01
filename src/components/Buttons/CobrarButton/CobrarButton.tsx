@@ -4,7 +4,7 @@ import { db } from "@/services/firebase"
 import { ButtonProps } from "@/types/types"
 import swal from "sweetalert2"
 
-const CobrarButton = ({ cobrado, id }: ButtonProps) => {
+const CobrarButton = ({ cobrado, id, context }: ButtonProps) => {
   const toggleCobrado = async ({ cobrado, id }: ButtonProps) => {
     await db.collection("customers").doc(id).update({ cobrado: !cobrado })
     swal.fire({
@@ -17,10 +17,16 @@ const CobrarButton = ({ cobrado, id }: ButtonProps) => {
 
   return (
     <button
-      onClick={() => toggleCobrado({ cobrado, id })}
+      onClick={() => toggleCobrado({ cobrado, id, context })}
       className="btn btn-outline-success"
     >
-      {cobrado ? "✔" : "💰"}
+      {cobrado
+        ? context === "table"
+          ? "✔"
+          : "Anular cobro"
+        : context === "detail"
+        ? "Cobrar"
+        : "💰"}
     </button>
   )
 }

@@ -4,8 +4,6 @@ import { useEffect, useState } from "react"
 import { Auth0Provider } from "@auth0/auth0-react"
 import "firebase/app"
 import "bootstrap/dist/css/bootstrap.min.css"
-import "react-toastify/dist/ReactToastify.css"
-import { ToastContainer } from "react-toastify"
 import ReactTooltip from "react-tooltip"
 
 import Layout from "@/components/layout/Layout"
@@ -28,7 +26,6 @@ function MyApp({ Component, pageProps }: AppProps) {
     >
       <Layout>
         <Component {...pageProps} />
-        <ToastContainer pauseOnFocusLoss={false} />
         {mounted && <ReactTooltip />}
       </Layout>
     </Auth0Provider>

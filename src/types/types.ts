@@ -13,6 +13,7 @@ export interface CustomerInfo {
 export interface ButtonProps {
   cobrado?: boolean
   id?: string
+  context?: string
 }
 export interface NewClient {
   customer: string

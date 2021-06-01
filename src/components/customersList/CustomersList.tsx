@@ -6,6 +6,7 @@ import clsx from "clsx"
 import NoData from "../nodata-alert/NoData"
 import CobrarButton from "../Buttons/CobrarButton/CobrarButton"
 import DeleteButton from "../Buttons/deleteButton/DeleteButton"
+import Link from "next/link"
 
 const CustomersList = () => {
   const [customers, setCustomers] = useState<CustomerInfo[]>([])
@@ -45,26 +46,30 @@ const CustomersList = () => {
                   "table-success": customer.cobrado,
                 })
                 return (
-                  <tr className={successBg}>
-                    <td>
-                      <strong>{customer.customer}</strong>
-                      <br />
-                      <strong>Renta: </strong>
-                      {`Gs. ${thousands(customer.renta, ".")}`}
-                      <br />
-                      <strong>Departamento: </strong>
-                      {customer.departamento}
-                    </td>
+                  <tr className={successBg} style={{ cursor: "pointer" }}>
+                    <Link href={`/customers/${customer.id}`}>
+                      <td>
+                        <strong>{customer.customer}</strong>
+                        <br />
+                        <strong>Renta: </strong>
+                        {`Gs. ${thousands(customer.renta, ".")}`}
+                        <br />
+                        <strong>Departamento: </strong>
+                        {customer.departamento}
+                      </td>
+                    </Link>
                     <td>
                       <CobrarButton
                         cobrado={customer.cobrado}
                         id={customer.id}
+                        context="table"
                       />
                     </td>
                     <td>
                       <DeleteButton
                         cobrado={customer.cobrado}
                         id={customer.id}
+                        context="table"
                       />
                     </td>
                   </tr>
