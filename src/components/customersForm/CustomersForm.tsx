@@ -22,7 +22,7 @@ const CustomersForm = () => {
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
-    const date = new Date().toLocaleString()
+    const date = new Date().toLocaleString("es")
     const createdBy = user?.email
     addClient({ customer, renta, departamento, createdBy, createdAt: date })
     setCustomer("")

@@ -21,6 +21,7 @@ const ClientDetail = () => {
 
   useEffect(() => {
     getCustomer(idReceived)
+    console.log()
   }, [customer])
 
   return customer ? (
@@ -31,7 +32,9 @@ const ClientDetail = () => {
         margin: "auto",
         border: "1px solid gray",
         borderRadius: "20px",
+        borderColor: customer.cobrado ? "#c1d6cc" : "",
         padding: "2rem",
+        backgroundColor: customer.cobrado ? "#c1d6cc" : "",
       }}
     >
       <h2 className="text-center">Fichero del cliente</h2>
@@ -47,6 +50,10 @@ const ClientDetail = () => {
       <p>
         <strong>Renta: </strong>
         {customer?.renta}
+      </p>
+      <p>
+        <strong>Último cobro: </strong>
+        {customer?.cobradoBy}
       </p>
       <p>
         <strong>Fecha creación: </strong>

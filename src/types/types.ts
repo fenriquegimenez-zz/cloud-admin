@@ -21,6 +21,7 @@ export interface NewClient {
   departamento: string
   userEmail?: string
   cobrado?: boolean
+  cobradoBy?: string
   createdBy?: string
   createdAt: string
 }
